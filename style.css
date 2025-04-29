@@ -1,7 +1,25 @@
-    *{
-        background-color: black;
-        color: lightgoldenrodyellow;
-        margin: 10px 35px 10px 35px;
+:root {
+    --primary-color: #333;
+    --secondary-color: #333;
+    --third-color: #999;
+    --backgroundinside-color: white;
+    --background-color: #646cff;
+    --shadow-color: rgba(100, 108, 255, 0.7);
+}
+@media (prefers-color-scheme: dark) {
+    :root{
+    --primary-color: rgba(255, 234, 100);
+    --secondary-color: dimgrey;
+    --third-color: gray;
+    --backgroundinside-color:white;
+    --background-color: black;
+    --shadow-color:rgba(255, 234, 100, 0.7);
+    }
+}
+*{
+        background-color: var(--background-color);
+        margin-block: 10px;
+        margin-inline: 35px;
         box-sizing: border-box;
 
     }
@@ -11,26 +29,25 @@
     .pokemon-container h2{
         font-weight: 200;
         font-size: 20px;
-        color: dimgrey;
+        color: var(--secondary-color);
 
     }
     nav,nav *{
-        background-color: white;
-        color: black;
+        background-color: var(--backgroundinside-color);
     }
     .logo-container{
         display: flex;
         justify-content: center;
     }
     .logo{
-        width: 300px;
-        height: auto;
+        inline-size: 300px;
+        block-size: auto;
     }
     .nav-container{
         display: flex;
         justify-content: center;
-        margin: 50px 0 20px 0;
-        height: 100px;
+        margin-block: 50px 20px;
+        block-size: 100px;
     }
     .option {
         position: relative;
@@ -42,16 +59,17 @@
     }
     .option label{
         position: absolute;
-        top: 5px;
+        inset-block-start: 5px;
+        inset-inline-start: 22px;
         left: 22px;
-        color: dimgrey;
+        color: var(--secondary-color);
         font-size: 16px;
         pointer-events: none;
     }
 
     .option select{
-        width: 350px;
-        height: 60px;
+        inline-size: 350px;
+        block-size: 60px;
         text-align: center;
         font-size: 18px;
         border-radius: 4%;
@@ -63,23 +81,28 @@
         gap: 20px;
     }
     .pokemon-list, .pokemon-list * {
-        background-color: white;
-        color: black;
+        background-color: var(--backgroundinside-color);
+    }
+    .pokemon-list:focus-within {
+        box-shadow: 0 0 50px var(--shadow-color);
+        transform: scale(1.03);
+        transition: all 0.3s ease-in-out;
+        z-index: 1;
     }
     .pokemon-list {
         margin: 0;
-        width: 100%;
-        height: 420px;
+        inline-size: 100%;
+        block-size: 420px;
         box-sizing: border-box;
-        max-width: 100%;
+        max-inline-size: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
     .pokemon-list img{
         margin: 20px;
-        width: auto;
-        height: 170px;
+        inline-size: auto;
+        block-size: 170px;
     }
     .pokemon-list p{
         margin: 15px;
@@ -88,13 +111,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 50px;
+        margin-block-start: 50px;
         gap: 15px;
     }
     .switch {
         position: relative;
-        width: 60px;
-        height: 34px;
+        inline-size: 60px;
+        block-size: 34px;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -102,8 +125,8 @@
 
     .switch input {
         opacity: 0;
-        width: 0;
-        height: 0;
+        inline-size: 0;
+        block-size: 0;
     }
     .switch-text{
         font-size: 20px;
@@ -112,9 +135,9 @@
     .slider {
         position: absolute;
         display: block;
-        width: 100%;
-        height: 100%;
-        background-color: gray;
+        inline-size: 100%;
+        block-size: 100%;
+        background-color: var(--third-color);
         border-radius: 34px;
         cursor: pointer;
         transition: 0.4s;
@@ -123,17 +146,17 @@
     .slider:before {
         position: absolute;
         content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: black;
+        block-size: 26px;
+        inline-size: 26px;
+        inset-inline-start: 4px;
+        inset-block-end: 4px;
+        background-color: var(--background-color);
         transition: 0.4s;
         border-radius: 50%;
     }
 
     input:checked + .slider {
-        background-color: #646cff;
+        background-color: var(--primary-color);
     }
 
     input:checked + .slider:before {
